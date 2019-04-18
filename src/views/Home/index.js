@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 
+import { FirebaseContext } from '../../containers/Firebase'
+
 class Home extends Component {
   render() {
     return (
-      <div>
-        Home
-      </div>
+      <FirebaseContext.Consumer>
+        {firebase => (
+          <div>
+            Home
+          </div>
+        )}
+      </FirebaseContext.Consumer>
     )
   }
 }
