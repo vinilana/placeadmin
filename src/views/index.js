@@ -2,7 +2,7 @@ import React, { Component, Suspense } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 //Containers
-const App = React.lazy(() => import('../containers/App'))
+import App from '../containers/App'
 
 //Views
 const Home   = React.lazy(() => import('./Home'))
@@ -21,8 +21,8 @@ const NoMatch = () => {
 class Views extends Component {
   render() {
     return (
-      <Suspense fallback={<div>Loading...</div>}>
-        <App>
+      <App>
+        <Suspense fallback={<div>Loading...</div>}>
           <BrowserRouter>
             <Switch>
               <Route exact path="/" component={Home}/>
@@ -32,8 +32,8 @@ class Views extends Component {
               <Route component={NoMatch}/>
             </Switch>
           </BrowserRouter>
-        </App>
-      </Suspense>
+        </Suspense>
+      </App>
     )
   }
 }
