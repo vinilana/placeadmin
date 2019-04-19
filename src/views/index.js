@@ -1,6 +1,9 @@
 import React, { Component, Suspense } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
+//constants
+import Routes from '../contants/routes'
+
 //High Order Components
 import { withAuthentication } from '../highOrderComponents/Session'
 
@@ -12,6 +15,7 @@ const Home   = React.lazy(() => import('./Home'))
 const Orders = React.lazy(() => import('./Orders'))
 const SignIn = React.lazy(() => import('./SignIn'))
 const SignUp = React.lazy(() => import('./SignUp'))
+const ResetPassword = React.lazy(() => import('./ResetPassword'))
 
 const NoMatch = () => {
   return (
@@ -29,10 +33,11 @@ class Views extends Component {
         <Suspense fallback={<div>Loading...</div>}>
           <BrowserRouter>
             <Switch>
-              <Route exact path="/" component={Home}/>
-              <Route path="/orders" component={Orders}/>
-              <Route path="/signup" component={SignUp}/>
-              <Route path="/signin" component={SignIn}/>
+              <Route exact path={Routes.HOME} component={Home}/>
+              <Route path={Routes.ORDERS} component={Orders}/>
+              <Route path={Routes.SIGN_UP} component={SignUp}/>
+              <Route path={Routes.SIGN_IN} component={SignIn}/>
+              <Route path={Routes.RESET_PASSWORD} component={ResetPassword} />
               <Route component={NoMatch}/>
             </Switch>
           </BrowserRouter>
