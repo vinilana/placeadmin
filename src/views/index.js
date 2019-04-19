@@ -2,7 +2,7 @@ import React, { Component, Suspense } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 //constants
-import Routes from '../contants/routes'
+import ROUTES from '../constants/routes'
 
 //High Order Components
 import { withAuthentication } from '../highOrderComponents/Session'
@@ -33,11 +33,11 @@ class Views extends Component {
         <Suspense fallback={<div>Loading...</div>}>
           <BrowserRouter>
             <Switch>
-              <Route exact path={Routes.HOME} component={Home}/>
-              <Route path={Routes.ORDERS} component={Orders}/>
-              <Route path={Routes.SIGN_UP} component={SignUp}/>
-              <Route path={Routes.SIGN_IN} component={SignIn}/>
-              <Route path={Routes.RESET_PASSWORD} component={ResetPassword} />
+              <Route exact path={ROUTES.HOME} component={Home}/>
+              <Route path={ROUTES.ORDERS} component={Orders}/>
+              <Route path={ROUTES.SIGN_UP} component={SignUp}/>
+              <Route path={ROUTES.SIGN_IN} component={SignIn}/>
+              <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
               <Route component={NoMatch}/>
             </Switch>
           </BrowserRouter>

@@ -1,5 +1,5 @@
 import AuthUserContext from './SessionContext'
 import withAuthentication from './withAuthenticaton'
-import withAuthenticatedRoute from './withAuthenticatedRoute'
+import withAuthorization from './withAuthorization'
 
-export { AuthUserContext, withAuthentication, withAuthenticatedRoute }
+export { AuthUserContext, withAuthentication, withAuthorization }
