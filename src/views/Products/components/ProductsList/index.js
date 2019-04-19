@@ -4,6 +4,8 @@ import { withFirebase } from '../../../../highOrderComponents/Firebase'
 
 class ProductsList extends PureComponent {
 
+  productsRef = this.props.firebase.doGetReferenceOfDocumentsFromCollection('products')
+
   state = {
     list: null
   }
@@ -21,15 +23,20 @@ class ProductsList extends PureComponent {
   }
 
   componentDidMount() {
-    this.listener = this.props.firebase.doInstanceOfDocumentsFromCollection('products')
-      .onSnapshot(querySnapshot => {
-        this.handleMountList(querySnapshot)
-      })
 
-    this.props.firebase.doLoadDocumentsFromCollection('products')
+    this.listener = this.productsRef.orderBy("name").limit(3).onSnapshot(querySnapshot => {
+      this.handleMountList(querySnapshot)
+    })
+
+    this.productsRef.orderBy("name").limit(3).get()
       .then((querySnapshot) => {
         this.handleMountList(querySnapshot)
       })
+  }
+
+  componentWillUnmount() {
+    this.productsRef.onSnapshot(function () {});
+    this.listener = null
   }
 
   render() {

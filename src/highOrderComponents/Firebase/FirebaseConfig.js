@@ -24,11 +24,8 @@ class FirebaseConfig {
 
   // Collections API
 
-  doInstanceOfDocumentsFromCollection = (collection) =>
+  doGetReferenceOfDocumentsFromCollection = (collection) =>
     this.db.collection(collection)
-
-  doLoadDocumentsFromCollection = (collection) =>
-    this.db.collection(collection).get()
 
   doAddDocumentToCollection = (collection, data) =>
     this.db.collection(collection).add(data)
