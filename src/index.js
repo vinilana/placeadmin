@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import Firebase, {FirebaseContext} from './containers/Firebase';
+import Firebase, {FirebaseContext} from './highOrderComponents/Firebase';
 import Views from './views';
 
 ReactDOM.render(

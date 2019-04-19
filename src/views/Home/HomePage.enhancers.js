@@ -1,10 +1,13 @@
 import { compose } from 'recompose'
-import { withFirebase } from '../../containers/Firebase/FirebaseContext'
+
+//High Order Components
+//import { withFirebase } from '../../highOrderComponents/Firebase/FirebaseContext'
+import { withAuthenticatedRoute } from '../../highOrderComponents/AuthenticatedRoute'
 
 import HomePage from './HomePage'
 
 const HomePageEnhancement = compose(
-  withFirebase
+  withAuthenticatedRoute,
 )(HomePage)
 
 export default HomePageEnhancement

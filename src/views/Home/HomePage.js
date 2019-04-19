@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 
 class HomePage extends Component {
   render() {
+    console.log(this.props)
+
     return (
       <div>
-        HomePage
+        Olá {this.props.authUser && this.props.authUser.displayName}
       </div>
     )
   }
