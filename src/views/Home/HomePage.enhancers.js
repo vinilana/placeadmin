@@ -2,7 +2,7 @@ import { compose } from 'recompose'
 
 //High Order Components
 //import { withFirebase } from '../../highOrderComponents/Firebase/FirebaseContext'
-import { withAuthenticatedRoute } from '../../highOrderComponents/AuthenticatedRoute'
+import { withAuthenticatedRoute } from '../../highOrderComponents/Session'
 
 import HomePage from './HomePage'
 
