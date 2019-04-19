@@ -1,5 +1,7 @@
 import app from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/firestore'
+
 import { logger } from '../../utils/Logger'
 
 const config = {
@@ -15,9 +17,16 @@ class FirebaseConfig {
   constructor() {
     app.initializeApp(config)
     this.auth = app.auth()
+    this.db = app.firestore()
 
     logger.info('Firebase initialized')
   }
+
+  // Collections API
+
+  doAddDocumentToCollection = (collection, data) =>
+    this.db.collection(collection).add(data)
+
   // *** Auth API ***
 
   doCreateUserWithEmailAndPassword = (email, password) =>

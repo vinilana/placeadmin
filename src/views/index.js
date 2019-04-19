@@ -12,6 +12,7 @@ import App from '../containers/App'
 
 //Views
 const Home   = React.lazy(() => import('./Home'))
+const Products = React.lazy(() => import('./Products'))
 const Orders = React.lazy(() => import('./Orders'))
 const SignIn = React.lazy(() => import('./SignIn'))
 const SignUp = React.lazy(() => import('./SignUp'))
@@ -34,6 +35,7 @@ class Views extends Component {
           <BrowserRouter>
             <Switch>
               <Route exact path={ROUTES.HOME} component={Home}/>
+              <Route path={ROUTES.PRODUCTS} component={Products}/>
               <Route path={ROUTES.ORDERS} component={Orders}/>
               <Route path={ROUTES.SIGN_UP} component={SignUp}/>
               <Route path={ROUTES.SIGN_IN} component={SignIn}/>
