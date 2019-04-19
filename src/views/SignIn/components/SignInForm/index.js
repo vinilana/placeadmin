@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 
+import { withRouter } from 'react-router-dom'
 import { withFirebase } from '../../../../highOrderComponents/Firebase'
 
 import TextField from '@material-ui/core/TextField'
@@ -21,7 +22,10 @@ class SignInForm extends PureComponent {
   handleSubmit = () => {
     let { email, password } = this.state
 
-    this.props.firebase.doCreateUserWithEmailAndPassword(email, password)
+    this.props.firebase.doSignInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.props.history.push('/')
+      })
   }
 
   render() {
@@ -46,11 +50,11 @@ class SignInForm extends PureComponent {
         />
 
         <Button variant="contained" color="secondary" onClick={this.handleSubmit}>
-          Cadastrar
+          SignIn
         </Button>
       </form>
     )
   }
 }
 
-export default withFirebase(SignInForm)
+export default withFirebase(withRouter(SignInForm))

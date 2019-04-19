@@ -20,25 +20,22 @@ class FirebaseConfig {
   }
   // *** Auth API ***
 
-  doCreateUserWithEmailAndPassword = (email, password) => {
+  doCreateUserWithEmailAndPassword = (email, password) =>
     this.auth.createUserWithEmailAndPassword(email, password);
-  }
 
-  doSignInWithEmailAndPassword = (email, password) => {
+  doSignInWithEmailAndPassword = (email, password) =>
     this.auth.signInWithEmailAndPassword(email, password);
-  }
 
-  doSignOut = () => {
-    this.auth.signOut()
-  }
 
-  doPasswordReset = email => {
-    this.auth.sendPasswordResetEmail(email)
-  }
+  doSignOut = () =>
+    this.auth.signOut();
 
-  doPasswordUpdate = password => {
-    this.auth.currentUser.updatePassword(password)
-  }
+
+  doPasswordReset = email =>
+    this.auth.sendPasswordResetEmail(email);
+
+  doPasswordUpdate = password =>
+    this.auth.currentUser.updatePassword(password);
 
 }
 
