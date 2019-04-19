@@ -6,7 +6,7 @@ class HomePage extends Component {
 
     return (
       <div>
-        Olá {this.props.authUser && this.props.authUser.displayName}
+        Olá {this.props.authUser && this.props.authUser.email}
       </div>
     )
   }

@@ -13,7 +13,6 @@ class SignInForm extends PureComponent {
   }
 
   handleChange = (type, event) => {
-    console.log(event)
     this.setState({
       [type]: event.target.value
     })

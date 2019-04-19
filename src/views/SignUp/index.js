@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 
-class SignUp extends Component {
+import SignInPage from './SingUpPage'
+
+class SignIn extends Component {
   render() {
     return (
       <div>
-        SignUp
+        Sign Up
+        <SignInPage />
       </div>
     )
   }
 }
 
-export default SignUp
+export default SignIn
