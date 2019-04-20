@@ -10,9 +10,10 @@ import { withAuthentication } from '../highOrderComponents/Session'
 //Containers
 import App from '../containers/App'
 
+import Products from './Products'
 //Views
 const Home   = React.lazy(() => import('./Home'))
-const Products = React.lazy(() => import('./Products'))
+//const Products = React.lazy(() => import('./Products'))
 const Orders = React.lazy(() => import('./Orders'))
 const SignIn = React.lazy(() => import('./SignIn'))
 const SignUp = React.lazy(() => import('./SignUp'))

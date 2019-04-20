@@ -1,18 +1,3 @@
-import React, { Component } from 'react'
+import ProductsPage from './ProductsPage'
 
-import ProductForm from './components/ProductForm'
-import ProductsList from './components/ProductsList'
-
-class Products extends Component {
-  render() {
-    return (
-      <div>
-        Products
-        <ProductsList />
-        <ProductForm />
-      </div>
-    )
-  }
-}
-
-export default Products
+export default ProductsPage

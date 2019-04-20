@@ -13,8 +13,7 @@ class ProductsList extends PureComponent {
   handleMountList = (querySnapshot) => {
     let list = []
     querySnapshot.forEach(function(doc) {
-      console.log(doc.id, " => ", doc.data())
-      list.push(doc.data())
+      list.push({...doc.data(), id: doc.id})
     })
 
     this.setState({
@@ -23,12 +22,11 @@ class ProductsList extends PureComponent {
   }
 
   componentDidMount() {
-
     this.listener = this.productsRef.orderBy("name").limit(3).onSnapshot(querySnapshot => {
       this.handleMountList(querySnapshot)
     })
 
-    this.productsRef.orderBy("name").limit(3).get()
+    this.productsRef.orderBy("name").limit(100).get()
       .then((querySnapshot) => {
         this.handleMountList(querySnapshot)
       })
@@ -42,11 +40,13 @@ class ProductsList extends PureComponent {
   render() {
     return (
       <ul>
-        {this.state.list && this.state.list.map((item, key) => (
-          <li key={key}>
-            {item.name}
-          </li>
-        ))}
+        {this.state.list && this.state.list.map((item, key) => {
+          return (
+            <li key={key}>
+              {item.name} <button onClick={this.props.onEdit()}> Editar </button>
+            </li>
+          )
+        })}
       </ul>
     )
   }

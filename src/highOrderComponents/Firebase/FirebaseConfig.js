@@ -22,13 +22,10 @@ class FirebaseConfig {
     logger.info('Firebase initialized')
   }
 
-  // Collections API
+  // Database API
 
   doGetReferenceOfDocumentsFromCollection = (collection) =>
     this.db.collection(collection)
-
-  doAddDocumentToCollection = (collection, data) =>
-    this.db.collection(collection).add(data)
 
   // *** Auth API ***
 

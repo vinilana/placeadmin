@@ -3,23 +3,46 @@ import React, { PureComponent } from 'react'
 import { withFirebase } from '../../../../highOrderComponents/Firebase'
 
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+import Modal from "../../../../components/Modal";
 
 class ProductForm extends PureComponent {
   state = {
-    name: null,
-    price: null,
-    amount: null,
-    unit: null
+    name: '',
+    price: '',
+    amount: '',
+    unit: '',
+    error: null
   }
 
-  handleChange = (type, event) => {
+  productsRef =  this.props.firebase.doGetReferenceOfDocumentsFromCollection('products')
+
+  handleChange = (type, value) => {
     this.setState({
-      [type]: event.target.value
+      [type]: value
     })
   }
 
-  handleValidateFields = () => {
+  handleValidateFields = (data) => {
+    if(data.name === '' || data.name === null) {
+      this.handleChange('error', 'Preencha o campo nome')
+      return false
+    }
+
+    if(data.price === '' || data.price === null){
+      this.handleChange('error', 'Preencha o campo preço')
+      return false
+    }
+
+    if(data.amount === '' || data.amount === null){
+      this.handleChange('error', 'Preencha o campo quantidade')
+      return false
+    }
+
+    if(data.unit === '' || data.unit === null){
+      this.handleChange('error', 'Preencha o campo unidade de medida')
+      return false
+    }
+
     return true
   }
 
@@ -37,10 +60,10 @@ class ProductForm extends PureComponent {
       amount,
       unit
     }
-    let isValidFields = this.handleValidateFields()
+    let isValidFields = this.handleValidateFields(data)
 
     if(isValidFields) {
-      this.props.firebase.doAddDocumentToCollection('products', data)
+      this.productsRef.add(data)
         .then(() => {
           this.props.history.push('/products')
         })
@@ -49,26 +72,55 @@ class ProductForm extends PureComponent {
             error: error.message
           })
         })
-    } else {
-      this.setState({
-        error: 'Campos inválidos'
+
+      this.props.onCreate()
+    }
+  }
+
+  handleInitialState = (productId) => {
+    let query = this.productsRef.where('uid', '==', productId).limit(1)
+    query.get()
+      .then((documentSnapshots) => {
+        console.log(documentSnapshots, 'documentSnapshots')
       })
+  }
+
+  componentDidMount() {
+    let { productId } = this.props
+
+    if(productId) {
+      this.handleInitialState(productId)
     }
   }
 
   render() {
+    let {
+      name,
+      price,
+      amount,
+      unit,
+      error
+    } = this.state
+
+    let { show } = this.props
+
     return (
-      <div>
-        Formulário de produto
+      <Modal
+        open={show}
+        title={'Cadastrar novo produto'}
+        onCreate={this.handleSubmit}
+        onClose={this.props.onClose}>
 
         <form noValidate>
+          {error}
 
           <TextField
             id="name"
             label="Nome"
             margin="normal"
             variant="outlined"
-            onChange={(e) => this.handleChange('name', e)}
+            value={name}
+            onChange={(e) => this.handleChange('name', e.target.value)}
           />
 
           <TextField
@@ -76,7 +128,8 @@ class ProductForm extends PureComponent {
             label="Preço"
             margin="normal"
             variant="outlined"
-            onChange={(e) => this.handleChange('price', e)}
+            value={price}
+            onChange={(e) => this.handleChange('price', e.target.value)}
           />
 
           <TextField
@@ -84,7 +137,8 @@ class ProductForm extends PureComponent {
             label="Quantidade"
             margin="normal"
             variant="outlined"
-            onChange={(e) => this.handleChange('amount', e)}
+            value={amount}
+            onChange={(e) => this.handleChange('amount', e.target.value)}
           />
 
           <TextField
@@ -92,14 +146,11 @@ class ProductForm extends PureComponent {
             label="Unidade de medida"
             margin="normal"
             variant="outlined"
-            onChange={(e) => this.handleChange('unit', e)}
+            value={unit}
+            onChange={(e) => this.handleChange('unit', e.target.value)}
           />
-
-          <Button variant="contained" color="secondary" onClick={this.handleSubmit}>
-            Cadastrar produto
-          </Button>
         </form>
-      </div>
+      </Modal>
     )
   }
 }
