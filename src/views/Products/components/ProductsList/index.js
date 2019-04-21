@@ -25,8 +25,17 @@ class ProductsList extends PureComponent {
     this.props.onEdit(id)
   }
 
+  handleDeleteItem = (id) => {
+    this.productsRef.doc(id).delete().then(() => {
+      console.log("Document successfully deleted!");
+    }).catch(function(error) {
+      console.error("Error removing document: ", error);
+    });
+
+  }
+
   componentDidMount() {
-    this.listener = this.productsRef.orderBy("name").limit(3).onSnapshot(querySnapshot => {
+    this.listener = this.productsRef.orderBy("name").limit(100).onSnapshot(querySnapshot => {
       this.handleMountList(querySnapshot)
     })
 
@@ -47,7 +56,9 @@ class ProductsList extends PureComponent {
         {this.state.list && this.state.list.map((item, key) => {
           return (
             <li key={key}>
-              {item.name} <button onClick={() => this.handleEdit(item.id)}> Editar </button>
+              {item.name}
+              <button onClick={() => this.handleEdit(item.id)}> Editar </button>
+              <button onClick={() => this.handleDeleteItem(item.id)}>Deletar</button>
             </li>
           )
         })}

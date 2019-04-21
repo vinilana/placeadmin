@@ -103,33 +103,29 @@ class ProductForm extends PureComponent {
     }
   }
 
-  handleResetFields = () => {
+  handleResetFields = async () => {
     this.setState({
       name: '',
       price: '',
       amount: '',
       unit: '',
-      id: null,
+      productId: null,
     })
   }
 
   handleInitialState = (productId) => {
-    if(productId) {
-      this.productsRef.doc(productId).get()
-        .then((doc) => {
-          let { name, price, amount, unit } = doc.data()
+    this.productsRef.doc(productId).get()
+      .then((doc) => {
+        let { name, price, amount, unit } = doc.data()
 
-          this.setState({
-            name,
-            price,
-            amount,
-            unit,
-            id: productId
-          })
+        this.setState({
+          name,
+          price,
+          amount,
+          unit,
+          productId
         })
-    } else {
-      this.handleResetFields()
-    }
+      })
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -143,15 +139,13 @@ class ProductForm extends PureComponent {
   }
 
   componentDidMount() {
+    this.handleResetFields()
+
     let { productId } = this.props
 
-    if(productId) {
+    if(productId !== null && typeof productId === 'string') {
       this.handleInitialState(productId)
     }
-
-    this.setState({
-      productId
-    })
   }
 
   render() {
