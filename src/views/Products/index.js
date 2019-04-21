@@ -1,3 +1,3 @@
-import ProductsPage from './ProductsPage'
+import ProductsPage from './ProductsPage.enhancers'
 
 export default ProductsPage
