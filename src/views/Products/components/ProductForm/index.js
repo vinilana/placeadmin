@@ -11,7 +11,8 @@ class ProductForm extends PureComponent {
     price: '',
     amount: '',
     unit: '',
-    error: null
+    error: null,
+    productId: null
   }
 
   productsRef =  this.props.firebase.doGetReferenceOfDocumentsFromCollection('products')
@@ -46,12 +47,42 @@ class ProductForm extends PureComponent {
     return true
   }
 
+  handleRedirectToProductsPage = () => {
+    this.props.onCreate()
+  }
+
+  handleUpdateDoc = (productId, data) => {
+    let { name, price, amount, unit } = data
+
+    this.productsRef.doc(productId).set({
+      name,
+      price,
+      amount,
+      unit
+    }).then(() => {
+      this.handleRedirectToProductsPage()
+    })
+  }
+
+  handleCreateDoc = (data) => {
+    this.productsRef.add(data)
+      .then(() => {
+        this.handleRedirectToProductsPage()
+      })
+      .catch(error => {
+        this.setState({
+          error: error.message
+        })
+      })
+  }
+
   handleSubmit = () => {
     let {
       name,
       price,
       amount,
-      unit
+      unit,
+      productId
     } = this.state
 
     let data = {
@@ -60,29 +91,55 @@ class ProductForm extends PureComponent {
       amount,
       unit
     }
+
     let isValidFields = this.handleValidateFields(data)
 
     if(isValidFields) {
-      this.productsRef.add(data)
-        .then(() => {
-          this.props.history.push('/products')
-        })
-        .catch(error => {
-          this.setState({
-            error: error.message
-          })
-        })
-
-      this.props.onCreate()
+      if(productId !== null) {
+        this.handleUpdateDoc(productId, data)
+      } else {
+        this.handleCreateDoc(data)
+      }
     }
   }
 
+  handleResetFields = () => {
+    this.setState({
+      name: '',
+      price: '',
+      amount: '',
+      unit: '',
+      id: null,
+    })
+  }
+
   handleInitialState = (productId) => {
-    let query = this.productsRef.where('uid', '==', productId).limit(1)
-    query.get()
-      .then((documentSnapshots) => {
-        console.log(documentSnapshots, 'documentSnapshots')
+    if(productId) {
+      this.productsRef.doc(productId).get()
+        .then((doc) => {
+          let { name, price, amount, unit } = doc.data()
+
+          this.setState({
+            name,
+            price,
+            amount,
+            unit,
+            id: productId
+          })
+        })
+    } else {
+      this.handleResetFields()
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if(prevProps.productId !== this.props.productId) {
+      this.handleInitialState(this.props.productId)
+
+      this.setState({
+        productId: this.props.productId
       })
+    }
   }
 
   componentDidMount() {
@@ -91,6 +148,10 @@ class ProductForm extends PureComponent {
     if(productId) {
       this.handleInitialState(productId)
     }
+
+    this.setState({
+      productId
+    })
   }
 
   render() {

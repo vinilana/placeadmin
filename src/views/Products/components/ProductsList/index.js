@@ -21,6 +21,10 @@ class ProductsList extends PureComponent {
     })
   }
 
+  handleEdit = (id) => {
+    this.props.onEdit(id)
+  }
+
   componentDidMount() {
     this.listener = this.productsRef.orderBy("name").limit(3).onSnapshot(querySnapshot => {
       this.handleMountList(querySnapshot)
@@ -43,7 +47,7 @@ class ProductsList extends PureComponent {
         {this.state.list && this.state.list.map((item, key) => {
           return (
             <li key={key}>
-              {item.name} <button onClick={this.props.onEdit()}> Editar </button>
+              {item.name} <button onClick={() => this.handleEdit(item.id)}> Editar </button>
             </li>
           )
         })}

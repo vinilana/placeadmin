@@ -17,12 +17,18 @@ class Products extends Component {
     })
   }
 
-  handleEditProduct = (id) => {
-    this.handleChange('productId', id)
-  }
-
   handleShowProductForm = () => {
     this.handleChange('showProductForm', !this.state.showProductForm)
+  }
+
+  handleCreateNewProduct = () => {
+    this.handleChange('productId', null)
+    this.handleShowProductForm()
+  }
+
+  handleEditProduct = (id) => {
+    this.handleChange('productId', id)
+    this.handleShowProductForm()
   }
 
   render() {
@@ -31,7 +37,7 @@ class Products extends Component {
     return (
       <div>
         Products
-        <button onClick={this.handleShowProductForm}>
+        <button onClick={this.handleCreateNewProduct}>
           Cadastrar novo Produto {showProductForm}
         </button>
 
