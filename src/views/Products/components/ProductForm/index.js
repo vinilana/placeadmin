@@ -130,10 +130,16 @@ class ProductForm extends PureComponent {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if(prevProps.productId !== this.props.productId) {
-      this.handleInitialState(this.props.productId)
+      let productId = this.props.productId
+
+      this.handleResetFields()
+
+      if(productId !== null && typeof productId === 'string') {
+        this.handleInitialState(productId)
+      }
 
       this.setState({
-        productId: this.props.productId
+        productId
       })
     }
   }
