@@ -33,17 +33,15 @@ class Views extends Component {
     return (
       <App>
         <Suspense fallback={<div>Loading...</div>}>
-          <BrowserRouter>
-            <Switch>
-              <Route exact path={ROUTES.HOME} component={Home}/>
-              <Route path={ROUTES.PRODUCTS} component={Products}/>
-              <Route path={ROUTES.ORDERS} component={Orders}/>
-              <Route path={ROUTES.SIGN_UP} component={SignUp}/>
-              <Route path={ROUTES.SIGN_IN} component={SignIn}/>
-              <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
-              <Route component={NoMatch}/>
-            </Switch>
-          </BrowserRouter>
+          <Switch>
+            <Route exact path={ROUTES.HOME} component={Home}/>
+            <Route path={ROUTES.PRODUCTS} component={Products}/>
+            <Route path={ROUTES.ORDERS} component={Orders}/>
+            <Route path={ROUTES.SIGN_UP} component={SignUp}/>
+            <Route path={ROUTES.SIGN_IN} component={SignIn}/>
+            <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
+            <Route component={NoMatch}/>
+          </Switch>
         </Suspense>
       </App>
     )

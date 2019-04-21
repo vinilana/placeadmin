@@ -17,6 +17,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
+import Drawer from '../Drawer'
+
 import { withFirebase } from '../../highOrderComponents/Firebase'
 
 const styles = theme => ({
@@ -93,6 +95,7 @@ class PrimarySearchAppBar extends React.Component {
   state = {
     anchorEl: null,
     mobileMoreAnchorEl: null,
+    showDrawer: false
   }
 
   handleProfileMenuOpen = event => {
@@ -116,11 +119,16 @@ class PrimarySearchAppBar extends React.Component {
     this.props.firebase.doSignOut()
   }
 
+  handleShowDrawer = () => {
+    this.setState({
+      showDrawer: !this.state.showDrawer
+    })
+  }
+
   render() {
-    const { anchorEl, mobileMoreAnchorEl } = this.state;
+    const { anchorEl, mobileMoreAnchorEl, showDrawer } = this.state;
     const { classes } = this.props;
     const isMenuOpen = Boolean(anchorEl);
-    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     const renderMenu = (
       <Menu
@@ -134,48 +142,23 @@ class PrimarySearchAppBar extends React.Component {
       </Menu>
     );
 
-    const renderMobileMenu = (
-      <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-        open={isMobileMenuOpen}
-        onClose={this.handleMenuClose}
-      >
-        <MenuItem onClick={this.handleMobileMenuClose}>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <MailIcon />
-            </Badge>
-          </IconButton>
-          <p>Messages</p>
-        </MenuItem>
-        <MenuItem onClick={this.handleMobileMenuClose}>
-          <IconButton color="inherit">
-            <Badge badgeContent={11} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <p>Notifications</p>
-        </MenuItem>
-        <MenuItem onClick={this.handleProfileMenuOpen}>
-          <IconButton color="inherit">
-            <AccountCircle />
-          </IconButton>
-          <p>Profile</p>
-        </MenuItem>
-      </Menu>
-    );
-
     return (
       <div className={classes.root}>
+        <Drawer show={showDrawer} onShow={this.handleShowDrawer} onHide={this.handleShowDrawer} />
+
         <AppBar position="static">
           <Toolbar>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+            <IconButton
+              onClick={this.handleShowDrawer}
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Open drawer">
+
               <MenuIcon />
+
             </IconButton>
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              Material-UI
+              Place ADMIN
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -218,7 +201,6 @@ class PrimarySearchAppBar extends React.Component {
           </Toolbar>
         </AppBar>
         {renderMenu}
-        {renderMobileMenu}
       </div>
     );
   }
