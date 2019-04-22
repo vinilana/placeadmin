@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
 
 //Components
 import Navbar from '../../components/Navbar'
@@ -13,15 +11,7 @@ import { AuthUserContext } from '../../highOrderComponents/Session'
 //Assets
 import './index.scss'
 
-const theme = createMuiTheme({
-  palette: {
-    primary: purple,
-    secondary: green,
-  },
-  status: {
-    danger: 'orange',
-  },
-})
+const theme = createMuiTheme()
 
 class App extends Component {
   render(){

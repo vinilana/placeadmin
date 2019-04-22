@@ -1,0 +1,14 @@
+.products-page {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  &__button {
+    &--create-product {
+      width: 300px;
+      margin: 20px 15px;
+    }
+  }
+}

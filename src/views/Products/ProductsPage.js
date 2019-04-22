@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
+import Button from '@material-ui/core/Button'
+
 import ProductForm from './components/ProductForm'
 import ProductsList from './components/ProductsList'
+
+import './index.scss'
 
 class Products extends Component {
 
@@ -35,11 +39,15 @@ class Products extends Component {
     let { productId, showProductForm } = this.state
 
     return (
-      <div>
-        Products
-        <button onClick={this.handleCreateNewProduct}>
-          Cadastrar novo Produto {showProductForm}
-        </button>
+      <div className={'products-page__content'}>
+        <div className={'products-page__button--create-product'}>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={this.handleCreateNewProduct}>
+            Cadastrar novo Produto
+          </Button>
+        </div>
 
         <ProductsList
           onEdit={this.handleEditProduct}

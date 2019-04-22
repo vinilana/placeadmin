@@ -5,6 +5,8 @@ import { withFirebase } from '../../../../highOrderComponents/Firebase'
 import TextField from '@material-ui/core/TextField'
 import Modal from "../../../../components/Modal";
 
+import './index.scss'
+
 class ProductForm extends PureComponent {
   state = {
     name: '',
@@ -172,44 +174,56 @@ class ProductForm extends PureComponent {
         onCreate={this.handleSubmit}
         onClose={this.props.onClose}>
 
-        <form noValidate>
+        <form className={'product-form'} noValidate>
           {error}
 
-          <TextField
-            id="name"
-            label="Nome"
-            margin="normal"
-            variant="outlined"
-            value={name}
-            onChange={(e) => this.handleChange('name', e.target.value)}
-          />
+          <div className={'product-form__text-group'}>
+            <div className={'product-form__text-field'}>
+              <TextField
+                id="name"
+                label="Nome"
+                variant="outlined"
+                value={name}
+                fullWidth
+                className={'product-form__text-field'}
+                onChange={(e) => this.handleChange('name', e.target.value)}
+              />
+            </div>
+          </div>
 
-          <TextField
-            id="price"
-            label="Preço"
-            margin="normal"
-            variant="outlined"
-            value={price}
-            onChange={(e) => this.handleChange('price', e.target.value)}
-          />
+          <div className={'product-form__text-group'}>
+            <div className={'product-form__text-field'}>
+              <TextField
+                id="price"
+                label="Preço"
+                variant="outlined"
+                value={price}
+                className={'product-form__text-field'}
+                onChange={(e) => this.handleChange('price', e.target.value)}
+              />
+            </div>
 
-          <TextField
-            id="amount"
-            label="Quantidade"
-            margin="normal"
-            variant="outlined"
-            value={amount}
-            onChange={(e) => this.handleChange('amount', e.target.value)}
-          />
+            <div className={'product-form__text-field'}>
+              <TextField
+                id="amount"
+                label="Quantidade"
+                variant="outlined"
+                value={amount}
+                className={'product-form__text-field'}
+                onChange={(e) => this.handleChange('amount', e.target.value)}
+              />
+            </div>
 
-          <TextField
-            id="unit"
-            label="Unidade de medida"
-            margin="normal"
-            variant="outlined"
-            value={unit}
-            onChange={(e) => this.handleChange('unit', e.target.value)}
-          />
+            <div className={'product-form__text-field'}>
+              <TextField
+                id="unit"
+                label="Unidade de medida"
+                variant="outlined"
+                value={unit}
+                onChange={(e) => this.handleChange('unit', e.target.value)}
+              />
+            </div>
+          </div>
         </form>
       </Modal>
     )

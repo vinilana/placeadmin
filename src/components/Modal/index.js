@@ -10,13 +10,15 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 
+import './index.scss'
+
 const styles = {
   appBar: {
     position: 'relative',
   },
   flex: {
     flex: 1,
-  },
+  }
 };
 
 function Transition(props) {
@@ -56,7 +58,7 @@ class FullScreenDialog extends Component {
             </Button>
           </Toolbar>
         </AppBar>
-        <div>
+        <div className={'modal__children'}>
           {this.props.children}
         </div>
       </Dialog>
