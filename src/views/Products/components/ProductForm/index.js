@@ -3,7 +3,8 @@ import React, { PureComponent } from 'react'
 import { withFirebase } from '../../../../highOrderComponents/Firebase'
 
 import TextField from '@material-ui/core/TextField'
-import Modal from "../../../../components/Modal";
+import Modal from "../../../../components/Modal"
+import Loader from '../../../../components/Loader'
 
 import './index.scss'
 
@@ -14,7 +15,8 @@ class ProductForm extends PureComponent {
     amount: '',
     unit: '',
     error: null,
-    productId: null
+    productId: null,
+    showLoader: true
   }
 
   productsRef =  this.props.firebase.doGetReferenceOfDocumentsFromCollection('products')
@@ -112,21 +114,30 @@ class ProductForm extends PureComponent {
       amount: '',
       unit: '',
       productId: null,
+      showLoader: true
+    })
+  }
+
+  handleShowLoader = () => {
+    this.setState({
+      showLoader: !this.state.showLoader
     })
   }
 
   handleInitialState = (productId) => {
     this.productsRef.doc(productId).get()
-      .then((doc) => {
+      .then(async (doc) => {
         let { name, price, amount, unit } = doc.data()
 
-        this.setState({
+        await this.setState({
           name,
           price,
           amount,
           unit,
           productId
         })
+
+        this.handleShowLoader()
       })
   }
 
@@ -138,6 +149,8 @@ class ProductForm extends PureComponent {
 
       if(productId !== null && typeof productId === 'string') {
         this.handleInitialState(productId)
+      } else {
+        this.handleShowLoader()
       }
 
       this.setState({
@@ -153,6 +166,8 @@ class ProductForm extends PureComponent {
 
     if(productId !== null && typeof productId === 'string') {
       this.handleInitialState(productId)
+    } else {
+      this.handleShowLoader()
     }
   }
 
@@ -162,7 +177,8 @@ class ProductForm extends PureComponent {
       price,
       amount,
       unit,
-      error
+      error,
+      showLoader
     } = this.state
 
     let { show } = this.props
@@ -174,57 +190,64 @@ class ProductForm extends PureComponent {
         onCreate={this.handleSubmit}
         onClose={this.props.onClose}>
 
-        <form className={'product-form'} noValidate>
-          {error}
+        {showLoader && (
+          <Loader />
+        )}
 
-          <div className={'product-form__text-group'}>
-            <div className={'product-form__text-field'}>
-              <TextField
-                id="name"
-                label="Nome"
-                variant="outlined"
-                value={name}
-                fullWidth
-                className={'product-form__text-field'}
-                onChange={(e) => this.handleChange('name', e.target.value)}
-              />
-            </div>
-          </div>
+        {!showLoader && (
+          <form className={'product-form'} noValidate>
+            {error}
 
-          <div className={'product-form__text-group'}>
-            <div className={'product-form__text-field'}>
-              <TextField
-                id="price"
-                label="Preço"
-                variant="outlined"
-                value={price}
-                className={'product-form__text-field'}
-                onChange={(e) => this.handleChange('price', e.target.value)}
-              />
+            <div className={'product-form__text-group'}>
+              <div className={'product-form__text-field'}>
+                <TextField
+                  id="name"
+                  label="Nome"
+                  variant="outlined"
+                  value={name}
+                  fullWidth
+                  className={'product-form__text-field'}
+                  onChange={(e) => this.handleChange('name', e.target.value)}
+                />
+              </div>
             </div>
 
-            <div className={'product-form__text-field'}>
-              <TextField
-                id="amount"
-                label="Quantidade"
-                variant="outlined"
-                value={amount}
-                className={'product-form__text-field'}
-                onChange={(e) => this.handleChange('amount', e.target.value)}
-              />
-            </div>
+            <div className={'product-form__text-group'}>
+              <div className={'product-form__text-field'}>
+                <TextField
+                  id="price"
+                  label="Preço"
+                  variant="outlined"
+                  value={price}
+                  className={'product-form__text-field'}
+                  onChange={(e) => this.handleChange('price', e.target.value)}
+                />
+              </div>
 
-            <div className={'product-form__text-field'}>
-              <TextField
-                id="unit"
-                label="Unidade de medida"
-                variant="outlined"
-                value={unit}
-                onChange={(e) => this.handleChange('unit', e.target.value)}
-              />
+              <div className={'product-form__text-field'}>
+                <TextField
+                  id="amount"
+                  label="Quantidade"
+                  variant="outlined"
+                  value={amount}
+                  className={'product-form__text-field'}
+                  onChange={(e) => this.handleChange('amount', e.target.value)}
+                />
+              </div>
+
+              <div className={'product-form__text-field'}>
+                <TextField
+                  id="unit"
+                  label="Unidade de medida"
+                  variant="outlined"
+                  value={unit}
+                  onChange={(e) => this.handleChange('unit', e.target.value)}
+                />
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        )}
+
       </Modal>
     )
   }
