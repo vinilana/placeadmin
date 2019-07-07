@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-//Components
-import Navbar from '../../components/Navbar'
+//Containers
+import { Dashboard } from '../Dashboard'
 
 //High Order Components
 import { AuthUserContext } from '../../highOrderComponents/Session'
@@ -18,10 +18,8 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <AuthUserContext.Consumer>
-          {authUser => authUser && <Navbar />}
+          {authUser => authUser && <Dashboard {...this.props} />}
         </AuthUserContext.Consumer>
-
-        {this.props.children}
       </MuiThemeProvider>
     )
   }

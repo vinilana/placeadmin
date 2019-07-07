@@ -1,0 +1,29 @@
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+
+  $sidebar_size: 250px;
+
+  &__panelbar {
+    display: flex;
+    width: 100%;
+    z-index: 2;
+  }
+
+  &__sidebar {
+    display: flex;
+    position: relative;
+    width: $sidebar_size;
+    height: 100%;
+    z-index: 1;
+
+    background-color: #ebebeb;
+  }
+
+  &__container {
+    display: flex;
+    width: calc(100% - #{$sidebar_size});
+    z-index: 1;
+  }
+}

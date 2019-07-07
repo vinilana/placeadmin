@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 //constants
 import ROUTES from '../constants/routes'
@@ -29,7 +29,6 @@ const NoMatch = () => {
 
 class Views extends Component {
   render() {
-    console.log(this.props)
     return (
       <App>
         <Suspense fallback={<div>Loading...</div>}>

@@ -17,8 +17,6 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 
-import Drawer from '../Drawer'
-
 import { withFirebase } from '../../highOrderComponents/Firebase'
 
 const styles = theme => ({
@@ -144,46 +142,14 @@ class PrimarySearchAppBar extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Drawer show={showDrawer} onShow={this.handleShowDrawer} onHide={this.handleShowDrawer} />
-
         <AppBar position="static">
           <Toolbar>
-            <IconButton
-              onClick={this.handleShowDrawer}
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Open drawer">
-
-              <MenuIcon />
-
-            </IconButton>
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
               Place ADMIN
             </Typography>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </div>
+
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton color="inherit">
-                <Badge badgeContent={4} color="secondary">
-                  <MailIcon />
-                </Badge>
-              </IconButton>
-              <IconButton color="inherit">
-                <Badge badgeContent={17} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}
                 aria-haspopup="true"
@@ -202,7 +168,7 @@ class PrimarySearchAppBar extends React.Component {
         </AppBar>
         {renderMenu}
       </div>
-    );
+    )
   }
 }
 

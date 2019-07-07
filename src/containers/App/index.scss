@@ -1,7 +1,17 @@
 * {
   box-sizing: content-box;
+  font-family: sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 body {
-  margin: 0
+  margin: 0;
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
 }

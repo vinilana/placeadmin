@@ -1,67 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 
 import { Link } from 'react-router-dom'
 
-const styles = {
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
-};
+import './index.scss'
 
-class SwipeableTemporaryDrawer extends React.Component {
-
-  handleShow = () => {
-    this.props.onShow()
-  }
-
-  handleHide = () => {
-    this.props.onHide()
-  }
-
+class Sidebar extends React.Component {
   render() {
-    let { show } = this.props
-
     return (
-      <SwipeableDrawer
-        open={show}
-        onClose={this.handleHide}
-        onOpen={this.handleShow}
-      >
-        <div
-          tabIndex={0}
-          role="button"
-          onClick={this.handleHide}
-          onKeyDown={this.handleHide}
-        >
-          <List>
-            <ListItem button>
-              <Link to={'/'}>
-                <ListItemText primary={'Início'} />
-              </Link>
-            </ListItem>
-            <ListItem button>
-              <Link to={'/products'}>
-                <ListItemText primary={'Produtos'} />
-              </Link>
-            </ListItem>
-          </List>
-        </div>
-      </SwipeableDrawer>
+      <div className={'drawer__container'}>
+        <ul className={'drawer__container__list'}>
+          <Link to={'/'}>
+            <li className={'drawer__container__list__item'}>
+                Início
+            </li>
+          </Link>
+          <Link to={'/products'}>
+            <li className={'drawer__container__list__item'}>
+                Produtos
+            </li>
+          </Link>
+        </ul>
+      </div>
     );
   }
 }
 
-SwipeableTemporaryDrawer.propTypes = {
+Sidebar.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(SwipeableTemporaryDrawer)
+export default Sidebar

@@ -1,0 +1,36 @@
+.drawer {
+  &__container {
+    width: 100%;
+    display: flex;
+    background: #f3f3f3;
+
+    &__list {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+
+      &__item {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        border-bottom: 1px solid rgba(153, 153, 153, 0.09);
+
+        padding: 0 20px;
+        width: 210px;
+        height: 40px;
+
+        font-weight: bold;
+        color: #999999;
+        text-decoration: none;
+
+        &:hover {
+          background-color: #f9f9f9;
+        }
+      }
+    }
+  }
+}
