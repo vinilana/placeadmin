@@ -1,0 +1,21 @@
+.user-menu {
+  display: flex;
+  padding: 10px;
+  align-self: center;
+  align-items: center;
+  justify-self: flex-end;
+  justify-content: center;
+
+  &__name {
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  &__avatar {
+    width: 20px;
+    height: 20px;
+    background-color: #5737d6;
+    border-radius: 100%;
+    margin: 5px;
+  }
+}

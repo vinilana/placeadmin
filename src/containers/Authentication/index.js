@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 //Containers
-import { Dashboard } from '../Dashboard'
+import { Dashboard } from '../Templates'
 
 //High Order Components
 import { AuthUserContext } from '../../highOrderComponents/Session'

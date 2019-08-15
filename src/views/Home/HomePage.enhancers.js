@@ -4,7 +4,6 @@ import { compose } from 'recompose'
 //import ROLES from '../../constants/roles'
 
 //High Order Components
-//import { withFirebase } from '../../highOrderComponents/Firebase/FirebaseContext'
 import { withAuthorization } from '../../highOrderComponents/Session'
 
 import HomePage from './HomePage'

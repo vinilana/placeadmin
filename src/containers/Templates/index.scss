@@ -1,3 +1,7 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
 .dashboard {
   display: flex;
   flex-wrap: wrap;
@@ -17,13 +21,17 @@
     width: $sidebar_size;
     height: 100%;
     z-index: 1;
-
-    background-color: #ebebeb;
   }
 
   &__container {
     display: flex;
+    flex-direction: column;
     width: calc(100% - #{$sidebar_size});
     z-index: 1;
+
+    &__canvas {
+      width: 100%;
+      margin: 20px;
+    }
   }
 }

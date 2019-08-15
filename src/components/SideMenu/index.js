@@ -5,18 +5,18 @@ import { Link } from 'react-router-dom'
 
 import './index.scss'
 
-class Sidebar extends React.Component {
+class SideMenu extends React.Component {
   render() {
     return (
-      <div className={'drawer__container'}>
-        <ul className={'drawer__container__list'}>
+      <div className={'side-menu__container'}>
+        <ul className={'side-menu__container__list'}>
           <Link to={'/'}>
-            <li className={'drawer__container__list__item'}>
+            <li className={'side-menu__container__list__item'}>
                 Início
             </li>
           </Link>
           <Link to={'/products'}>
-            <li className={'drawer__container__list__item'}>
+            <li className={'side-menu__container__list__item'}>
                 Produtos
             </li>
           </Link>
@@ -26,8 +26,8 @@ class Sidebar extends React.Component {
   }
 }
 
-Sidebar.propTypes = {
+SideMenu.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default Sidebar
+export default SideMenu

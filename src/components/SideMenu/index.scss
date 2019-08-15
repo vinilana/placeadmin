@@ -1,8 +1,8 @@
-.drawer {
+.side-menu {
   &__container {
     width: 100%;
     display: flex;
-    background: #f3f3f3;
+    background: #5737d6;
 
     &__list {
       width: 100%;
@@ -23,12 +23,11 @@
         width: 210px;
         height: 40px;
 
-        font-weight: bold;
-        color: #999999;
+        color: #ffffff;
         text-decoration: none;
 
         &:hover {
-          background-color: #f9f9f9;
+          background-color: #7927ff;
         }
       }
     }

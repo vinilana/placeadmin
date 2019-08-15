@@ -8,13 +8,10 @@ import ROUTES from '../constants/routes'
 import { withAuthentication } from '../highOrderComponents/Session'
 
 //Containers
-import App from '../containers/App'
+import App from '../containers/Authentication'
 
-import Products from './Products'
 //Views
 const Home   = React.lazy(() => import('./Home'))
-//const Products = React.lazy(() => import('./Products'))
-const Orders = React.lazy(() => import('./Orders'))
 const SignIn = React.lazy(() => import('./SignIn'))
 const SignUp = React.lazy(() => import('./SignUp'))
 const ResetPassword = React.lazy(() => import('./ResetPassword'))
@@ -34,8 +31,6 @@ class Views extends Component {
         <Suspense fallback={<div>Loading...</div>}>
           <Switch>
             <Route exact path={ROUTES.HOME} component={Home}/>
-            <Route path={ROUTES.PRODUCTS} component={Products}/>
-            <Route path={ROUTES.ORDERS} component={Orders}/>
             <Route path={ROUTES.SIGN_UP} component={SignUp}/>
             <Route path={ROUTES.SIGN_IN} component={SignIn}/>
             <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
