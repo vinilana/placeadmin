@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import { Dashboard } from '../../containers/Templates'
 
 class HomePage extends Component {
   render() {
     return (
-      <div>
+      <Dashboard>
         Olá {this.props.authUser && this.props.authUser.email}
-      </div>
+      </Dashboard>
     )
   }
 }

@@ -1,6 +1,22 @@
 * {
   font-family: 'Roboto', sans-serif;
+  box-sizing: content-box;
+  font-family: sans-serif;
 }
+
+a {
+  text-decoration: none;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
+}
+
 
 .dashboard {
   display: flex;

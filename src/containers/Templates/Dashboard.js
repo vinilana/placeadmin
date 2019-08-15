@@ -12,6 +12,7 @@ class Dashboard extends PureComponent {
   render() {
 
     const currentUser = this.props.firebase.auth.currentUser
+    const doSignOut = this.props.firebase.doSignOut
 
     return (
       <div className={'dashboard'}>
@@ -21,7 +22,7 @@ class Dashboard extends PureComponent {
 
         <div className={'dashboard__container'}>
           <div className={'dashboard__panelbar'}>
-            <TopBar user={currentUser} />
+            <TopBar user={currentUser}  doSignOut={doSignOut} />
           </div>
 
           <div className={`dashboard__container__canvas`}>

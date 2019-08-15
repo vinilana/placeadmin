@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 function UserMenu (props) {
-  const { user } = props
+  const { user, doSignOut } = props
 
   return (
-    <div className={`user-menu`}>
+    <div className={`user-menu`} onClick={doSignOut}>
       <div className={`user-menu__name`}>
         {user.displayName || 'Sem nome'}
       </div>
@@ -17,13 +17,15 @@ function UserMenu (props) {
 }
 
 UserMenu.propTypes = {
-  user: PropTypes.string
+  user: PropTypes.object,
+  doSignOut: PropTypes.func
 }
 
 UserMenu.defaultProps = {
   user: {
     name: 'Visitante'
-  }
+  },
+  doSignOut: () => {}
 }
 
 export { UserMenu }

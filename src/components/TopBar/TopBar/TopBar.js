@@ -19,7 +19,7 @@ class TopBar extends Component {
     expanded: false
   }
 
-  handleDoLogout = () => {
+  handleDoSignOut = () => {
     this.props.doSignOut()
   }
 
@@ -34,7 +34,7 @@ class TopBar extends Component {
 
     return (
       <div className={`top-bar`}>
-        <UserMenu user={user} />
+        <UserMenu user={user} doSignOut={this.handleDoSignOut} />
       </div>
     )
   }

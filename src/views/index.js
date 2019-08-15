@@ -8,7 +8,7 @@ import ROUTES from '../constants/routes'
 import { withAuthentication } from '../highOrderComponents/Session'
 
 //Containers
-import App from '../containers/Authentication'
+import { Dashboard } from '../containers/Templates'
 
 //Views
 const Home   = React.lazy(() => import('./Home'))
@@ -27,17 +27,15 @@ const NoMatch = () => {
 class Views extends Component {
   render() {
     return (
-      <App>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Switch>
-            <Route exact path={ROUTES.HOME} component={Home}/>
-            <Route path={ROUTES.SIGN_UP} component={SignUp}/>
-            <Route path={ROUTES.SIGN_IN} component={SignIn}/>
-            <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
-            <Route component={NoMatch}/>
-          </Switch>
-        </Suspense>
-      </App>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Switch>
+          <Route exact path={ROUTES.HOME} component={Home}/>
+          <Route path={ROUTES.SIGN_UP} component={SignUp}/>
+          <Route path={ROUTES.SIGN_IN} component={SignIn}/>
+          <Route path={ROUTES.RESET_PASSWORD} component={ResetPassword} />
+          <Route component={NoMatch}/>
+        </Switch>
+      </Suspense>
     )
   }
 }
