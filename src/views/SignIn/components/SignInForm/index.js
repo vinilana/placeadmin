@@ -28,6 +28,9 @@ class SignInForm extends PureComponent {
         this.props.history.push('/')
         Notification.send('success', 'Login relizado com sucesso!')
       })
+      .catch(e => {
+        Notification.send('error', 'Falha ao tentar logar')
+      })
   }
 
   render() {

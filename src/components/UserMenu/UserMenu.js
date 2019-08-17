@@ -1,8 +1,10 @@
 import React  from 'react'
 import PropTypes from 'prop-types'
 
+import { Icon } from 'rsuite'
+
 // Components
-import { Popover } from '../../Popover'
+import { Popover } from '../Popover'
 
 const Menu = ({ doSignOut }) => (
   <div onClick={doSignOut}>
@@ -22,7 +24,8 @@ const UserMenu = (props) => {
         <div className={`user-menu__name`}>
           {user.displayName || 'Sem nome'}
         </div>
-        <div className={`user-menu__avatar`}>
+        <div className={`user-menu__arrow`}>
+          <Icon icon={`angle-down`} size={'lg'} />
         </div>
       </div>
     </Popover>

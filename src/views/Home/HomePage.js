@@ -15,7 +15,13 @@ class HomePage extends Component {
         </Box>
         <Box>
           <Box.body>
-            Olá {this.props.authUser && this.props.authUser.email}
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/iqt4-cJExWE"
+              frameBorder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen />
           </Box.body>
         </Box>
       </Dashboard>

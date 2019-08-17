@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 // Components
-import { UserMenu } from '../UserMenu'
+import { UserMenu } from '../../UserMenu'
 import { Box } from '../../Box'
 
 class TopBar extends Component {

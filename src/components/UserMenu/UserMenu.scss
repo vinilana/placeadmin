@@ -10,11 +10,11 @@
     font-size: 12px;
   }
 
-  &__avatar {
+  &__arrow {
+    display: flex;
+    align-items: center;
     width: 20px;
     height: 20px;
-    background-color: #5737d6;
-    border-radius: 100%;
     margin: 5px;
   }
 }

@@ -2,8 +2,12 @@
   width: 100%;
   margin: 10px 10px 5px 10px;
   display: flex;
+  justify-content: flex-end;
 
   &__content {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
     padding: 10px;
   }
 }
