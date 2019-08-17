@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 // Components
 import { UserMenu } from '../UserMenu'
+import { Box } from '../../Box'
 
 class TopBar extends Component {
   static propTypes = {
@@ -34,7 +35,9 @@ class TopBar extends Component {
 
     return (
       <div className={`top-bar`}>
-        <UserMenu user={user} doSignOut={this.handleDoSignOut} />
+        <Box>
+          <UserMenu user={user} doSignOut={this.handleDoSignOut} />
+        </Box>
       </div>
     )
   }

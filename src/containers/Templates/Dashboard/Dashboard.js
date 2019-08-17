@@ -10,7 +10,6 @@ import './Dashboard.scss'
 class Dashboard extends PureComponent {
 
   render() {
-
     const currentUser = this.props.firebase.auth.currentUser
     const doSignOut = this.props.firebase.doSignOut
 

@@ -1,0 +1,15 @@
+.box {
+  display: flex;
+  position: relative;
+  background-color: #f2f2f2;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+  height: 50px;
+  border-radius: 5px;
+  width: 100%;
+  margin: 5px 10px;
+
+  &__body {
+    display: flex;
+    padding: 15px;
+  }
+}
