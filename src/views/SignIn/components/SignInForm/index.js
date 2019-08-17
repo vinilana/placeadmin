@@ -3,6 +3,8 @@ import React, { PureComponent } from 'react'
 import { withRouter } from 'react-router-dom'
 import { withFirebase } from '../../../../highOrderComponents/Firebase'
 
+import { Notification } from '../../../../containers/Notification'
+
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
@@ -24,6 +26,7 @@ class SignInForm extends PureComponent {
     this.props.firebase.doSignInWithEmailAndPassword(email, password)
       .then(() => {
         this.props.history.push('/')
+        Notification.send('success', 'Login relizado com sucesso!')
       })
   }
 
