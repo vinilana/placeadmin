@@ -1,11 +1,11 @@
 import React, { PureComponent } from 'react'
-import Drawer from '../../components/SideMenu'
-import TopBar from '../../components/TopBar'
+import Drawer from '../../../components/SideMenu'
+import TopBar from '../../../components/TopBar'
 
 // HOC
-import { withFirebase } from '../../highOrderComponents/Firebase'
+import { withFirebase } from '../../../highOrderComponents/Firebase'
 
-import './index.scss'
+import './Dashboard.scss'
 
 class Dashboard extends PureComponent {
 

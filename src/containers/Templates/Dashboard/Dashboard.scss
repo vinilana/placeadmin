@@ -1,0 +1,35 @@
+.dashboard {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+
+  background-color: var(--primary);
+
+  $sidebar_size: 250px;
+
+  &__panelbar {
+    display: flex;
+    width: 100%;
+    z-index: 2;
+  }
+
+  &__sidebar {
+    display: flex;
+    position: relative;
+    width: $sidebar_size;
+    height: 100%;
+    z-index: 1;
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - #{$sidebar_size});
+    z-index: 1;
+
+    &__canvas {
+      width: 100%;
+      margin: 20px;
+    }
+  }
+}
