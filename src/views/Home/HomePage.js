@@ -13,6 +13,11 @@ class HomePage extends Component {
             Olá {this.props.authUser && this.props.authUser.email}
           </Box.body>
         </Box>
+        <Box>
+          <Box.body>
+            Olá {this.props.authUser && this.props.authUser.email}
+          </Box.body>
+        </Box>
       </Dashboard>
     )
   }

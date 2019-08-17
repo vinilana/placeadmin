@@ -13,7 +13,8 @@
     "react-scripts": "2.1.8",
     "react-table": "^6.10.0",
     "recompose": "^0.30.0",
-    "rsuite": "^3.8.8"
+    "rsuite": "^3.8.8",
+    "prop-types": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

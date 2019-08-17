@@ -2,4 +2,8 @@
   width: 100%;
   margin: 10px 10px 5px 10px;
   display: flex;
+
+  &__content {
+    padding: 10px;
+  }
 }

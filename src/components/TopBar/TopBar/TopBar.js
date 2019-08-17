@@ -36,7 +36,9 @@ class TopBar extends Component {
     return (
       <div className={`top-bar`}>
         <Box>
-          <UserMenu user={user} doSignOut={this.handleDoSignOut} />
+          <div className={`top-bar__content`}>
+            <UserMenu user={user} doSignOut={this.handleDoSignOut} />
+          </div>
         </Box>
       </div>
     )
